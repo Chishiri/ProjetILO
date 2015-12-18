@@ -84,6 +84,8 @@ public class EditorFrame extends JFrame
 	 * du type de figure choisie;
 	 */
 	protected AbstractCreationListener creationListener;
+	
+	protected MoveShapeListener moveListener;
 
 	/**
 	 * Le label dans la barre d'état en bas dans lequel on affiche les
@@ -309,6 +311,7 @@ public class EditorFrame extends JFrame
 		setPreferredSize(new Dimension(650, 450));
 		drawingModel = new Drawing();
 		creationListener = null;
+		moveListener = new MoveShapeListener(drawingModel, infoLabel);
 
 		setTitle(EditorName);
 		if (!isMacOS)
@@ -325,7 +328,7 @@ public class EditorFrame extends JFrame
 		toolBar.setFloatable(false);
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 
-		JButton btnMove = new JButton("Move Mode");	//TODO
+		JToggleButton btnMove = new JToggleButton("Move Mode");	//TODO
 		btnMove.setAction(chModeAction);
 		toolBar.add(btnMove);
 
@@ -635,6 +638,13 @@ public class EditorFrame extends JFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			drawingModel.chMode();
+			if(drawingModel.moveMode()){
+				drawingPanel.removeCreationListener(creationListener);
+				drawingPanel.addCreationListener(moveListener);
+			} else {
+				drawingPanel.removeCreationListener(moveListener);
+				drawingPanel.addCreationListener(creationListener);
+			}
 		}
 	}
 
@@ -944,15 +954,9 @@ public class EditorFrame extends JFrame
 			drawingModel.setType(type);
 			
 			// Mise en place du type de creationListener
-			if(drawingModel.moveMode()){
-				System.out.println("moveMode activé");
-				drawingPanel.addCreationListener(new MoveShapeListener(drawingModel,
-																		infoLabel));
-			} else {
-				creationListener = type.getCreationListener(drawingModel,
-                                                        	infoLabel);
-				drawingPanel.addCreationListener(creationListener);
-			}
+			creationListener = type.getCreationListener(drawingModel,
+                                                        infoLabel);
+			drawingPanel.addCreationListener(creationListener);
 		}
 
 		@Override
