@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.awt.geom.RectangularShape;
 
 import figures.enums.FigureType;
 
@@ -12,7 +13,7 @@ import figures.enums.FigureType;
  * @author davidroussel
  */
 public class Polygon extends Figure
-{
+{	
 	/**
 	 * Le compteur d'instance des cercles.
 	 * Utilisé pour donner un numéro d'instance après l'avoir incrémenté
@@ -133,5 +134,10 @@ public class Polygon extends Figure
 	public FigureType getType()
  	{
  		return FigureType.POLYGON;
+ 	}
+ 	
+ 	public void setLocation(Point2D p){
+ 		java.awt.Polygon poly = (java.awt.Polygon) shape;
+ 		poly.translate(1, 1);
  	}
 }

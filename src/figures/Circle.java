@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Paint;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+//import java.awt.geom.RectangularShape;
 
 import figures.enums.FigureType;
 
@@ -91,5 +92,10 @@ public class Circle extends Figure
 	public FigureType getType()
  	{
  		return FigureType.CIRCLE;
+ 	}
+ 	
+ 	public void setLocation(Point2D p){
+ 		Ellipse2D ellipse = (Ellipse2D) shape;
+ 		ellipse.setFrame(p.getX(), p.getY(), ellipse.getWidth(), ellipse.getHeight());
  	}
 }

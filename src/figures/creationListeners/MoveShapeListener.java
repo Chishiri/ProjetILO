@@ -56,6 +56,20 @@ public class MoveShapeListener extends AbstractCreationListener
 
 		drawingModel.update();
 	}
+	
+	@Override
+	public void endFigure(MouseEvent e)
+	{
+		// Remise à zéro de currentStep pour pouvoir réutiliser ce
+		// listener sur une autre figure
+		nextStep();
+
+		endPoint = e.getPoint();
+
+		checkZeroSizeFigure();
+
+		drawingModel.update();
+	}
 
 	/**
 	 * Création d'une nouvelle figure rectangulaire de taille 0 au point de

@@ -104,7 +104,6 @@ public class Rectangle extends Figure
  		return FigureType.RECTANGLE;
  	}
  	
- 	@Override
  	public void setLocation(Point2D p){
  		RectangularShape rect = (RectangularShape) shape;
  		rect.setFrame(p.getX(), p.getY(), rect.getWidth(), rect.getHeight());
