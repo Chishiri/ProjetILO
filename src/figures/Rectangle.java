@@ -106,6 +106,8 @@ public class Rectangle extends Figure
  	
  	public void setLocation(Point2D p){
  		RectangularShape rect = (RectangularShape) shape;
- 		rect.setFrame(p.getX(), p.getY(), rect.getWidth(), rect.getHeight());
+ 		double w = rect.getWidth();
+ 		double h = rect.getHeight();
+ 		rect.setFrame(p.getX() - w/2, p.getY() - h/2, w, h);
  	}
 }

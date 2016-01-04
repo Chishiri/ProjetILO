@@ -87,6 +87,8 @@ public class Ellipse extends Figure
 
  	public void setLocation(Point2D p){
  		Ellipse2D ellipse = (Ellipse2D) shape;
- 		ellipse.setFrame(p.getX(), p.getY(), ellipse.getWidth(), ellipse.getHeight());
+ 		double w = ellipse.getWidth();
+ 		double h = ellipse.getHeight();
+ 		ellipse.setFrame(p.getX()-w/2, p.getY()-h/2, w, h);
  	}
 }

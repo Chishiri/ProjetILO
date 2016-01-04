@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 
 import figures.enums.FigureType;
@@ -138,6 +139,9 @@ public class Polygon extends Figure
  	
  	public void setLocation(Point2D p){
  		java.awt.Polygon poly = (java.awt.Polygon) shape;
- 		poly.translate(1, 1);
+ 		Rectangle2D bounds = poly.getBounds2D();
+ 		double w = bounds.getWidth();
+ 		double h = bounds.getHeight();
+ 		poly.translate((int) (p.getX()-bounds.getX()-w/2), (int) (p.getY()-bounds.getY()-h/2));
  	}
 }
