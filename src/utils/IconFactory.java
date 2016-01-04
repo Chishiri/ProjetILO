@@ -42,6 +42,7 @@ public class IconFactory
 			ImageIcon icon = iconFactory.get(hash);
 			if (icon == null)
 			{
+				System.out.println(ImageBase + name + ImageType);
 				icon = new ImageIcon(IconFactory.class
 					.getResource(ImageBase + name + ImageType));
 				if (icon.getImageLoadStatus() == java.awt.MediaTracker.COMPLETE)

@@ -12,10 +12,12 @@ import figures.Drawing;
 import figures.Ellipse;
 import figures.Figure;
 import figures.Polygon;
+import figures.PolygonRegulier;
 import figures.Rectangle;
 import figures.RoundedRectangle;
 import figures.creationListeners.AbstractCreationListener;
 import figures.creationListeners.PolygonCreationListener;
+import figures.creationListeners.PolygonRegulierCreationListener;
 import figures.creationListeners.RectangularShapeCreationListener;
 import figures.creationListeners.RoundedRectangleCreationListener;
 
@@ -33,13 +35,14 @@ public enum FigureType
 	RECTANGLE, 
 	ROUNDED_RECTANGLE, 
 	POLYGON, 
+	POLYGONREGULIER,
 	NONE;
 
 	/**
 	 * Nombre de figures référencées ici (à changer si on ajoute des types de 
 	 * figures)
 	 */
-	public final static int NbFigureTypes = 5;
+	public final static int NbFigureTypes = 6;
 	
 	/**
 	 * Obtention d'une instance de figure correspondant au type
@@ -71,6 +74,10 @@ public enum FigureType
 				Point pp = new Point(Double.valueOf(p.getX()).intValue(),
 						Double.valueOf(p.getY()).intValue());
 				return new Polygon(stroke, edge, fill, pp, pp);
+			case POLYGONREGULIER:
+				Point pr = new Point(Double.valueOf(p.getX()).intValue(),
+						Double.valueOf(p.getY()).intValue());
+				return new PolygonRegulier(stroke, edge, fill, p, pr, 5);
 			case NONE:
 				return null;
 		}
@@ -100,6 +107,8 @@ public enum FigureType
 				return new RoundedRectangleCreationListener(model, tipLabel);
 			case POLYGON:
 				return new PolygonCreationListener(model, tipLabel);
+			case POLYGONREGULIER:
+				return new PolygonRegulierCreationListener(model, tipLabel);
 			case NONE:
 				return null;
 		}
@@ -128,6 +137,8 @@ public enum FigureType
 				return new String("Rounded Rectangle");
 			case POLYGON:
 				return new String("Polygon");
+			case POLYGONREGULIER:
+				return new String("Polygon Régulier");
 			case NONE:
 				return new String("None");
 		}
@@ -175,6 +186,8 @@ public enum FigureType
 				return ROUNDED_RECTANGLE;
 			case 4:
 				return POLYGON;
+			case 5:
+				return POLYGONREGULIER;
 			default:
 				return POLYGON;
 		}
