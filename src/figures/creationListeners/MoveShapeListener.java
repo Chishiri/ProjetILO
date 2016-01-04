@@ -66,8 +66,6 @@ public class MoveShapeListener extends AbstractCreationListener
 
 		endPoint = e.getPoint();
 
-		checkZeroSizeFigure();
-
 		drawingModel.update();
 	}
 

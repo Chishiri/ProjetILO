@@ -974,9 +974,12 @@ public class EditorFrame extends JFrame
 
 					// Mise en place d'un nouveau type de creationListener
 					// Après avoir retiré l'ancien
-					drawingPanel.removeCreationListener(creationListener);
-					creationListener = figureType.getCreationListener(drawingModel, infoLabel);
-					drawingPanel.addCreationListener(creationListener);
+					// Si le mode mouvement n'est pas activé
+					if(!drawingModel.moveMode()) {
+						drawingPanel.removeCreationListener(creationListener);
+						creationListener = figureType.getCreationListener(drawingModel, infoLabel);
+						drawingPanel.addCreationListener(creationListener);
+					}
 					break;
 			}
 		}
