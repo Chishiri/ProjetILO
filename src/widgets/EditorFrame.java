@@ -643,6 +643,8 @@ public class EditorFrame extends JFrame
 				drawingPanel.addCreationListener(moveListener);
 			} else {
 				drawingPanel.removeCreationListener(moveListener);
+				FigureType type = drawingModel.getType();
+				creationListener = type.getCreationListener(drawingModel, infoLabel);
 				drawingPanel.addCreationListener(creationListener);
 			}
 		}
